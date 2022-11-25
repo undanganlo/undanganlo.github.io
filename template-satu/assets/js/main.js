@@ -1,9 +1,4 @@
-/**
-* Template Name: MyResume - v4.9.2
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 (function() {
   "use strict";
 
@@ -86,33 +81,6 @@
     window.addEventListener('load', toggleBacktotop)
     onscroll(document, toggleBacktotop)
   }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let body = select('body')
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
 
   /**
    * Scroll with ofset on page load with hash links in the url
@@ -250,6 +218,26 @@
   });
 
   /**
+   * Countdown timer
+   */
+   let countdown = select('.countdown');
+   const output = countdown.innerHTML;
+ 
+   const countDownDate = function() {
+     let timeleft = new Date(countdown.getAttribute('data-count')).getTime() - new Date().getTime();
+ 
+     let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+     let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+     let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+ 
+     countdown.innerHTML = output.replace('%d', days).replace('%h', hours).replace('%m', minutes).replace('%s', seconds);
+   }
+   countDownDate();
+   setInterval(countDownDate, 1000);
+ 
+ 
+  /**
    * Animation on scroll
    */
   window.addEventListener('load', () => {
@@ -267,3 +255,4 @@
   new PureCounter();
 
 })()
+
